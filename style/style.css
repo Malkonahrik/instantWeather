@@ -21,9 +21,9 @@ body {
     font-size: clamp(11px, 2vw, 30px);
     text-align: center;
     align-items: center;
-    border: solid rgb(23,127,171);
+    border: solid rgb(23, 127, 171);
     border-radius: 30px;
-    background-color: rgb(3,107,151);
+    background-color: rgb(3, 107, 151);
     color: white;
     margin-bottom: 10px;
     padding-top: 5vh;
@@ -43,7 +43,15 @@ body {
     width: 80vw;
     padding-top: 2vh;
     padding-bottom: 2vh;
-    
+
+}
+
+#errorMessage {
+    color: red;
+}
+
+.cache {
+    display: none;
 }
 
 @keyframes fadeInUp {
@@ -51,9 +59,10 @@ body {
         opacity: 0;
         transform: translateY(200px);
     }
+
     100% {
         opacity: 1;
-        transform: translateY(0); 
+        transform: translateY(0);
     }
 }
 
@@ -62,6 +71,7 @@ body {
         opacity: 0;
         transform: translateY(-50px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
