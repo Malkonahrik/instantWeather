@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,22 @@
     <title>Instant Weather</title>
     <link href="style/style.css" rel="stylesheet">
     <script defer src="script/script.js"></script>
+    <link rel="icon" href="image/meteo3.png" type="image/png">
 </head>
+
 <body>
-    <div></div>
-    <div></div>
+    <div id="divPrincipale" class="encadreTitre">
+        <h1> INSTANT WEATHER </h1>
+    </div>
+    <div id="Information" class="encadreInfos">
+        <form action="">
+            <label for="cp">Code Postal</label>
+            <input type="text" name="codePostal" id="cp" placeholder="00000" minlength="5" maxlength="5">
+            <span id="errorMessage" class="cache">Veuillez entrer une adresse e-mail valide.</span>
+            <br>
+            <select name="commune" id="communeSelect" class="cache"></select>
+        </form>
+    </div>
 </body>
+
 </html>
