@@ -106,4 +106,3 @@ async function getDataMeteo(inse) {
         return -1;
     }
 }
-
