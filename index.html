@@ -16,14 +16,14 @@
         <h1> INSTANT WEATHER </h1>
     </div>
     <div id="Information" class="encadreInfos">
-        <form action="">
-            <label for="cp">Code Postal</label>
+        <form id="formulaire">
+            <label for="cp">Code Postal : </label>
             <input type="text" name="codePostal" id="cp" placeholder="00000" minlength="5" maxlength="5">
             <span id="errorMessage" class="cache">Le code postal est invalide.</span>
             <br>
             <select name="commune" id="communeSelect" class="cache"></select>
+            <button id="submit" class="cache">Valider</button>
         </form>
-        <button id="submit"> appuyer</button>
         <div id="infoMeteo">
 
         </div>
