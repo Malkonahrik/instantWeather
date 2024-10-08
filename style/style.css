@@ -54,6 +54,7 @@ input {
     border-bottom: black 1px solid;
     padding: 3px;
     margin-bottom: 3vh;
+    scale: 1.2;
 }
 
 input:focus {
@@ -72,17 +73,33 @@ select {
     padding: 3px;
     border-radius: 5px;
     background-color: transparent;
-    border: 1px solid;
+    border : 1px solid;
+    outline: none;
+    transform: translateY(50px);
+    animation: fadeInDown 0.8s ease-out forwards;
     transition: transform 0.5s ease;
+    scale: 1.2;
+
+}
+
+#submit {
+    margin-top: 3vh;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    width: 50%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: green;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    transform: translateY(50px);
+    animation: fadeInDown 0.8s ease-out forwards;
 }
 
 option {
     background-color: #96C9F4;
     font-weight: lighter;
-}
-
-select:hover {
-    transform: scale(1.07);
 }
 
 select :focus {
