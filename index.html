@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
     <title>Instant Weather</title>
     <link href="style/style.css" rel="stylesheet">
     <script defer src="script/script.js"></script>
+    <link rel="icon" href="image/meteo3.png" type="image/png">
 </head>
+
 <body>
     <div id="divPrincipale" class="encadreTitre">
         <h1> INSTANT WEATHER </h1>
@@ -15,8 +18,12 @@
     <div id="Information" class="encadreInfos">
         <form action="">
             <label for="cp">Code Postal</label>
-            <input type="number" name="codePostal" id="cp">
+            <input type="text" name="codePostal" id="cp" placeholder="00000" minlength="5" maxlength="5">
+            <span id="errorMessage" class="cache">Le code postal est invalide.</span>
+            <br>
+            <select name="commune" id="communeSelect" class="cache"></select>
         </form>
     </div>
 </body>
+
 </html>

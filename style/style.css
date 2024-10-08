@@ -1,5 +1,5 @@
 html {
-    background-image: url("/instantWeather/image/ciel.jpg");
+    background-image: url("../image/ciel.jpg");
 }
 
 body {
@@ -13,7 +13,7 @@ body {
 .encadreTitre {
     opacity: 0;
     transform: translateY(50px);
-    animation: fadeInDown 2s ease-out forwards;
+    animation: fadeInDown 1.5s ease-out forwards;
     justify-content: center;
     width: 80vw;
     display: flex;
@@ -21,9 +21,9 @@ body {
     font-size: clamp(11px, 2vw, 30px);
     text-align: center;
     align-items: center;
-    border: solid rgb(23,127,171);
+    border: solid rgb(23, 127, 171);
     border-radius: 30px;
-    background-color: rgb(3,107,151);
+    background-color: rgb(3, 107, 151);
     color: white;
     margin-bottom: 10px;
     padding-top: 5vh;
@@ -31,19 +31,72 @@ body {
 }
 
 .encadreInfos {
+    background-color: #96C9F4;
     opacity: 0;
     transform: translateY(50px);
-    animation: fadeInUp 2s ease-out forwards;
+    animation: fadeInUp 1.5s ease-out forwards;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
-    border: solid black 2px;
+    border: solid rgb(23, 127, 171) 2px;
     border-radius: 10px;
     width: 80vw;
     padding-top: 2vh;
     padding-bottom: 2vh;
-    
+
+}
+
+input {
+    background-color: rgba(0,0,0,0);
+    border: none;
+    margin-left: 3px;
+    border-bottom: black 1px solid;
+    padding: 3px;
+    margin-bottom: 3vh;
+}
+
+input:focus {
+    border: none;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.5);
+    outline: none;
+}
+
+form > * {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 3px;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid;
+    transition: transform 0.5s ease;
+}
+
+option {
+    background-color: #96C9F4;
+    font-weight: lighter;
+}
+
+select:hover {
+    transform: scale(1.07);
+}
+
+select :focus {
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+#errorMessage {
+    color: red;
+}
+
+.cache {
+    display: none;
 }
 
 @keyframes fadeInUp {
@@ -51,9 +104,10 @@ body {
         opacity: 0;
         transform: translateY(200px);
     }
+
     100% {
         opacity: 1;
-        transform: translateY(0); 
+        transform: translateY(0);
     }
 }
 
@@ -62,6 +116,7 @@ body {
         opacity: 0;
         transform: translateY(-50px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
