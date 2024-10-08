@@ -48,14 +48,29 @@ bouttonSubmit.addEventListener("click", (e) => {
         } else {
             erreur.classList.add("cache");
             form.classList.add("cache");
-            const balisePTemperatureMin = document.createElement('p').textContent = json["tmin"];
-            const balisePTemperatureMax = document.createElement('p').textContent = json["tmax"];
-            const balisePProbaPluie = document.createElement('p').textContent = json["probarain"];
-            const balisePHeureSoleil = document.createElement('p').textContent = json["sun_hours"];
-            divMeteo.append(balisePTemperatureMin);
-            divMeteo.append(balisePTemperatureMax);
-            divMeteo.append(balisePProbaPluie);
-            divMeteo.append(balisePHeureSoleil);
+            if ("content" in document.createElement("template")) {
+                var template = document.getElementById("infoMeteo");
+                
+                var clone = document.importNode(template.content, true);
+                clone.querySelector(".contenu").textContent = "Température minimum : " + json["tmin"];              
+                information.appendChild(clone);
+              
+                var clone2 = document.importNode(template.content, true);
+                clone2.querySelector(".contenu").textContent = "Température maximum : " + json["tmax"];              
+                information.appendChild(clone2);
+
+                var clone3 = document.importNode(template.content, true);
+                clone3.querySelector(".contenu").textContent = "Probabilité de pluie : " + json["probarain"];              
+                information.appendChild(clone3);
+
+                var clone4 = document.importNode(template.content, true);
+                clone4.querySelector(".contenu").textContent = "Temps d'ensoleillement : " + json["sun_hours"];              
+                information.appendChild(clone4);
+              } else {
+
+              }
+            
+            
 
         }
     })
