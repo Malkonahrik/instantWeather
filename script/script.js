@@ -2,6 +2,9 @@ const information = document.getElementById("information");
 const codePostal = document.getElementById("cp");
 const erreur = document.getElementById("errorMessage");
 const communeSelect = document.getElementById("communeSelect");
+const bouttonSubmit = document.getElementById("submit");
+var communes = [];
+var inse;
 
 codePostal.addEventListener("input", (e) => {
     console.log(codePostal.value.length);
@@ -17,19 +20,23 @@ codePostal.addEventListener("input", (e) => {
                 erreur.classList.remove("cache");
             } else {
                 erreur.classList.add("cache");
+                let index = 0;
                 json.forEach(element => {
-                    console.log(element);
+                    communes[index] = element;
+                    index += 1;
                     const option = document.createElement('option');
                     option.value = element["nom"].toLowerCase().replace(/\s+/g, '-');
                     option.textContent = element["nom"];
                     communeSelect.appendChild(option);
                 });
+                bouttonSubmit.classList.remove("cache");
                 communeSelect.classList.remove("cache");
             }
         });
     } else {
         communeSelect.replaceChildren();
         communeSelect.classList.add("cache");
+        bouttonSubmit.classList.add("cache");
     }
 }, false);
 
@@ -48,3 +55,12 @@ async function getData() {
         return -1;
     }
 }
+
+bouttonSubmit.addEventListener("click", (e) => {
+    console.log(communes);
+    inse = communes[communeSelect.selectedIndex]["code"];
+    console.log(inse);
+    e.preventDefault();
+});
+   
+
