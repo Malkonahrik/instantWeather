@@ -3,11 +3,11 @@ const codePostal = document.getElementById("cp");
 const erreur = document.getElementById("errorMessage");
 const communeSelect = document.getElementById("communeSelect");
 const bouttonSubmit = document.getElementById("submit");
+const divMeteo = document.getElementById("infoMeteo");
+const form = document.getElementById("formulaire")
 var communes = [];
-var inse;
 
 codePostal.addEventListener("input", (e) => {
-    console.log(codePostal.value.length);
     if (e.target.type === "number" && !e.key.match(/^[0-9]+$/)) {
         e.preventDefault();
     }
@@ -40,6 +40,28 @@ codePostal.addEventListener("input", (e) => {
     }
 }, false);
 
+bouttonSubmit.addEventListener("click", (e) => {
+    let inse = communes[communeSelect.selectedIndex]["code"];
+    getDataMeteo(inse).then((json) => {
+        if (json == -1) {
+            erreur.classList.remove("cache");
+        } else {
+            erreur.classList.add("cache");
+            form.classList.add("cache");
+            const balisePTemperatureMin = document.createElement('p').textContent = json["tmin"];
+            const balisePTemperatureMax = document.createElement('p').textContent = json["tmax"];
+            const balisePProbaPluie = document.createElement('p').textContent = json["probarain"];
+            const balisePHeureSoleil = document.createElement('p').textContent = json["sun_hours"];
+            divMeteo.append(balisePTemperatureMin);
+            divMeteo.append(balisePTemperatureMax);
+            divMeteo.append(balisePProbaPluie);
+            divMeteo.append(balisePHeureSoleil);
+
+        }
+    })
+    e.preventDefault();
+});
+
 async function getData() {
     const url = "https://geo.api.gouv.fr/communes?codePostal=" + codePostal.value;
     try {
@@ -47,7 +69,6 @@ async function getData() {
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }
-
         var json = await response.json();
         let machin = json[0]["nom"];
         return json;
@@ -56,11 +77,18 @@ async function getData() {
     }
 }
 
-bouttonSubmit.addEventListener("click", (e) => {
-    console.log(communes);
-    inse = communes[communeSelect.selectedIndex]["code"];
-    console.log(inse);
-    e.preventDefault();
-});
-   
+async function getDataMeteo(inse) {
+    const url = "https://api.meteo-concept.com/api/forecast/daily?token=75e38b3c4f84616e8c5d703a6a6271ffcdad018bac865662eeb3f8b5766bec42&insee=" + inse;
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+        var json = await response.json();
+        let reponse = json["forecast"][0]; // meteo sur 1 jour
+        return reponse;
+    } catch (error) {
+        return -1;
+    }
+}
 
