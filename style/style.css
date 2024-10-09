@@ -36,6 +36,8 @@ body {
     transform: translateY(50px);
     animation: fadeInUp 1.5s ease-out forwards;
     display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     justify-content: center;
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
@@ -113,6 +115,32 @@ select :focus {
     display: none;
 }
 
+.divTemplate {
+    flex: 1 1 200px;
+    text-align: center;
+    margin: 2vh;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    padding: 3vh;
+    opacity: 0;
+    animation: zoomIn 0.8s ease forwards;
+}
+
+.divTemplate:nth-child(3) {
+    animation-delay: 0.2s;
+}
+.divTemplate:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.divTemplate:nth-child(5) {
+    animation-delay: 0.6s;
+}
+.divTemplate:nth-child(6) {
+    animation-delay: 0.8s;
+}
+
 @keyframes fadeInUp {
     0% {
         opacity: 0;
@@ -136,3 +164,15 @@ select :focus {
         transform: translateY(0);
     }
 }
+
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.1);          
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);               
+    }
+}
+
