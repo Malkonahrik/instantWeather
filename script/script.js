@@ -71,7 +71,7 @@ bouttonSubmit.addEventListener("click", (e) => {
                 clone4.querySelector(".contenu").textContent = "Temps d'ensoleillement : " + json["sun_hours"];              
                 information.appendChild(clone4);
             } else {
-                /*var div1 = document.createElement("div");
+                var div1 = document.createElement("div");
                 div1.classList.add("divTemplate");
                 var div2 = div1.cloneNode();
                 var div3 = div1.cloneNode();
@@ -79,7 +79,7 @@ bouttonSubmit.addEventListener("click", (e) => {
                 div1.appendChild(document.createElement("p").textContent = "Température minimum : " + json["tmin"]);
                 div2.appendChild(document.createElement("p").textContent = "Température maximum : " + json["tmax"]);
                 div3.appendChild(document.createElement("p").textContent = "Probabilité de pluie : " + json["probarain"]);
-                div4.appendChild(document.createElement("p").textContent = "Temps d'ensoleillement : " + json["sun_hours"]);*/
+                div4.appendChild(document.createElement("p").textContent = "Temps d'ensoleillement : " + json["sun_hours"]);
             }
         }
     })
