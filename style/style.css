@@ -54,7 +54,6 @@ input {
     border-bottom: black 1px solid;
     padding: 3px;
     margin-bottom: 3vh;
-    scale: 1.2;
 }
 
 input:focus {
@@ -78,8 +77,6 @@ select {
     transform: translateY(50px);
     animation: fadeInDown 0.8s ease-out forwards;
     transition: transform 0.5s ease;
-    scale: 1.2;
-
 }
 
 #submit {
