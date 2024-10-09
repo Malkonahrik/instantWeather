@@ -5,6 +5,8 @@ const communeSelect = document.getElementById("communeSelect");
 const bouttonSubmit = document.getElementById("submit");
 const divMeteo = document.getElementById("infoMeteo");
 const form = document.getElementById("formulaire")
+const labelSelect = document.getElementById("labelSelect");
+codePostal.value = "";
 var communes = [];
 
 codePostal.addEventListener("input", (e) => {
@@ -31,10 +33,12 @@ codePostal.addEventListener("input", (e) => {
                 });
                 bouttonSubmit.classList.remove("cache");
                 communeSelect.classList.remove("cache");
+                labelSelect.classList.remove("cache");
             }
         });
     } else {
         communeSelect.replaceChildren();
+        labelSelect.classList.add("cache")
         communeSelect.classList.add("cache");
         bouttonSubmit.classList.add("cache");
     }
