@@ -32,29 +32,30 @@
                 </div>
                 <div>
                     <label for="checkboxLatitude" id="labelLatitude">Latitude décimale :</label>
-                    <input name="checkboxLatitude" id="checkboxLatitude" type="checkbox">
+                    <input class="checkbox_info" name="latitude" id="checkboxLatitude" type="checkbox" value ="Latitude : ">
                 </div>
                 <div>
                     <label for="checkboxLongitude" id="labelLongitude">Longitude décimale :</label>
-                    <input name="checkboxLongitude" id="checkboxLongitude" type="checkbox">
+                    <input class="checkbox_info" name="longitude" id="checkboxLongitude" type="checkbox" value ="Longitude : " >
                 </div>
                 <div>
-                    <label for="checkboxPluie" id="labelPluie">Cumul de pluie en mm</label>
-                    <input name="checkboxPluie" id="checkboxPluie" type="checkbox">
+                    <label for="checkboxPluie" id="rr1">Cumul de pluie :</label>
+                    <input class="checkbox_info" name="rr1" id="checkboxPluie" type="checkbox" value ="Cummil de pluie : ">
                 </div>
                 <div>
-                    <label for="checkboxVitesseVent" id="labelVitesseVent">Vitesse du vent en km:</label>
-                    <input name="checkboxVitesseVent" id="checkboxVitesseVent" type="checkbox">
+                    <label for="checkboxVitesseVent" id="labelVitesseVent">Vitesse du vent :</label>
+                    <input class="checkbox_info" name="wind10m" id="checkboxVitesseVent" type="checkbox" value ="Vitesse du vent : ">
                 </div>
                 <div>
                     <label for="checkboxDirectionVent" id="labelDirectionVent">Direction du vent en degrés :</label>
-                    <input name="checkboxDirectionVent" id="checkboxDirectionVent" type="checkbox">
+                    <input class="checkbox_info" name="dirwind10m" id="checkboxDirectionVent" type="checkbox" value ="Direction du vent : ">
                 </div>
             </fieldset>
             <button id="submit" class="cache">Valider</button>
         </form>
         <template id="infoMeteo">
             <div class="divTemplate">
+                <h3 class="dateJour"> </h3>
                 <div class="divImage">
                     <img class="image" src="" alt="">
                 </div>
