@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
-
+<!--
+    Fichier : index.html
+    Description : Page qui affiche dynamiquement les données météo d'une commune en utilisant le code postal 
+-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,12 +13,14 @@
     <script defer src="script/script.js"></script>
     <link rel="icon" href="image/meteo3.png" type="image/png">
 </head>
-
 <body>
+    <!-- Div qui affiche le nom du site-->
     <div id="divPrincipale" class="encadreTitre">
         <h1> INSTANT WEATHER </h1>
     </div>
+    <!-- Div qui receuille et affiche les information-->
     <div id="information" class="encadreInfos">
+        <!-- Le formulaire qui receuille le code postal et les options selectionnées-->
         <form id="formulaire" method="post">
             <label for="cp">Code Postal : </label>
             <input type="text" name="cp" id="cp" placeholder="00000" minlength="5" maxlength="5">
@@ -23,6 +28,7 @@
             <br>
             <label for="communeSelect" id="labelSelect" class="cache">Commune : </label>
             <select name="communeSelect" id="communeSelect" class="cache"></select>
+            <!-- Début du fieldset. Contient les checkbox associées aux option et la barre de selection du nombre de jours-->
             <fieldset id="option" class="cache">
                 <legend>Option supplémentaire :</legend>
                 <div>
@@ -53,11 +59,12 @@
             </fieldset>
             <button id="submit" class="cache">Valider</button>
         </form>
+         <!-- Template remplis par le fichier : script.js. Affiche les infos météos voulus et une image représentant l'état général de la météo-->
         <template id="infoMeteo">
             <div class="divTemplate">
-                <h3 class="dateJour"> </h3>
+                <h2 class="dateJour"> </h2>
                 <div class="divImage">
-                    <img class="image" src="" alt="">
+                    <img class="image" alt="">
                 </div>
                 <div class="infoPrincipal">
                     <p class="contenu"></p>

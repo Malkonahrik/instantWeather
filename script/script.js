@@ -98,7 +98,7 @@ bouttonSubmit.addEventListener("click", (e) => {
     let inse = communes[communeSelect.selectedIndex]["code"];
     getDataMeteo(inse).then((json) => {
         if (json == -1) {
-            alert("Impossible de récupérer les données météo. Ce problème peut venir de votre connection internet ou du serveur. Attendez puis rechargez la page");
+            alert("Impossible de récupérer les données météo. Ce problème vient du serveur.");
         } else {
             form.classList.add("cache");
             lectureCheckbox();
@@ -135,8 +135,8 @@ function creeElementMeteoTemplate(json) {
     for (let i = 0; i < nb_jour; i++) {
         const dat = new Date(json[i]["datetime"]);
         var clone = document.importNode(template.content, true);
-        var h3 = clone.querySelector(".dateJour")
-        h3.textContent = traductionJour(dat.toDateString(), i)
+        var h2 = clone.querySelector(".dateJour")
+        h2.textContent = traductionJour(dat.toDateString(), i)
         for (const [key, value] of Object.entries(tabDesTextes)) {
             var p = clone.querySelector(".contenu").cloneNode();
             p.textContent = `${value}` + json[i][`${key}`];
@@ -277,7 +277,7 @@ function creeElementMeteo(json) {
         const subMeteo = document.createElement('div');
         subMeteo.classList.add("divTemplate");
         const dat = new Date(json[i]["datetime"]);
-        const dateJour = document.createElement('h3');
+        const dateJour = document.createElement('h2');
         dateJour.textContent = traductionJour(dat.toDateString(), i)
         subMeteo.append(dateJour);
         for (const [key, value] of Object.entries(tabDesTextes)) {
