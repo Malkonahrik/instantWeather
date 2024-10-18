@@ -102,11 +102,15 @@ function creeElementMeteoTemplate(json){
     let nb_jour = nbJours.value;
     var template = document.getElementById("infoMeteo");
     for( let i = 0; i < nb_jour; i++){ 
+        const dat = new Date(json[i]["datetime"]);
         var clone = document.importNode(template.content, true);
+        var h3 = clone.querySelector(".dateJour")
+        h3.textContent = traductionJour(dat.toDateString(),i)
+        //clone.querySelector(".divTemplate").appendChild(h3)
         for(const [key,value] of Object.entries(tabDesTextes)){
             var p = clone.querySelector(".contenu").cloneNode();
             p.textContent = `${value}` + json[i][`${key}`];
-            clone.querySelector(".divTemplate").appendChild(p);                        
+            clone.querySelector(".infoPrincipal").appendChild(p);                        
         }
         information.appendChild(clone);
     }
@@ -117,7 +121,25 @@ function lectureCheckbox(){
     for(let i = 0; i < tabCheckbox.length; i++){
         let valeur = tabCheckbox[i].value;
         let nom = tabCheckbox[i].getAttribute("name");
-        tabCheckbox[i].checked?(tabDesTextes[nom]= valeur):(console.log("non"));
+        tabCheckbox[i].checked?(tabDesTextes[nom]= valeur):(null);
+    }
+}
+
+function traductionJour(textDat,i){
+    switch (i){
+        case 0 : return "Aujourd'hui"
+        case 1 :return "Demain"
+    }
+    switch(textDat.slice(0,3)){
+        case "Mon" : return "Lundi"
+        case "Tue" : return "Mardi"
+        case "Wed" : return "Mercredi"
+        case "Thu" : return "Jeudi"
+        case "Fri" : return "Vendredi"
+        case "Sat" : return "Samedi"
+        case "Sun" : return "Dimanche"
+        
+
     }
 }
 
@@ -141,7 +163,7 @@ function creeElementMeteo(json){
       subMeteo.classList.add("divTemplate");
       const dat = new Date(json[i]["datetime"]);
       const dateJour = document.createElement('h3');
-      dateJour.textContent =dat.toDateString();
+      dateJour.textContent =traductionJour(dat.toDateString(),i)
       subMeteo.append(dateJour);
       for(const [key,value] of Object.entries(tabDesTextes)){
         const baliseP = document.createElement('p');
