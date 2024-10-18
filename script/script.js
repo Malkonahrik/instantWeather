@@ -53,41 +53,40 @@ bouttonSubmit.addEventListener("click", (e) => {
         } else {
             erreur.classList.add("cache");
             form.classList.add("cache");
-            //creeElementMeteo(json);
-            if ("content" in document.createElement("template")) {
-                var template = document.getElementById("infoMeteo");
-                
-                var clone = document.importNode(template.content, true);
-                clone.querySelector(".contenu").textContent = "Température minimum : " + json["tmin"];              
-                information.appendChild(clone);
-              
-                var clone2 = document.importNode(template.content, true);
-                clone2.querySelector(".contenu").textContent = "Température maximum : " + json["tmax"];              
-                information.appendChild(clone2);
-
-                var clone3 = document.importNode(template.content, true);
-                clone3.querySelector(".contenu").textContent = "Probabilité de pluie : " + json["probarain"];              
-                information.appendChild(clone3);
-
-                var clone4 = document.importNode(template.content, true);
-                clone4.querySelector(".contenu").textContent = "Temps d'ensoleillement : " + json["sun_hours"];              
-                information.appendChild(clone4);
+            /*creeElementMeteo(json);
+            creeElementMeteoTemplate(json)*/
+           if ("content" in document.createElement("template")) {
+                creeElementMeteoTemplate(json)
             } else {
-                var div1 = document.createElement("div");
-                div1.classList.add("divTemplate");
-                var div2 = div1.cloneNode();
-                var div3 = div1.cloneNode();
-                var div4 = div1.cloneNode();
-                div1.appendChild(document.createElement("p").textContent = "Température minimum : " + json["tmin"]);
-                div2.appendChild(document.createElement("p").textContent = "Température maximum : " + json["tmax"]);
-                div3.appendChild(document.createElement("p").textContent = "Probabilité de pluie : " + json["probarain"]);
-                div4.appendChild(document.createElement("p").textContent = "Temps d'ensoleillement : " + json["sun_hours"]);
+                creeElementMeteo(json);
             }
 
         }
     })
     e.preventDefault();
 });
+
+function creeElementMeteoTemplate(json){
+    let nb_jour = 7;
+    let tabDesTextes ={
+      "tmin" : "Température Min: ",
+      "tmax" : "Température Max: ",
+      "probarain" : "Proba pluie: ",
+      "sun_hours" : "Heure ensoleillement: ",
+  
+    }
+    var template = document.getElementById("infoMeteo");
+    for( let i = 0; i < nb_jour; i++){ 
+        var clone = document.importNode(template.content, true);
+        for(const [key,value] of Object.entries(tabDesTextes)){
+            var p = clone.querySelector(".contenu").cloneNode();
+            p.textContent = `${value}` + json[i][`${key}`];
+            clone.querySelector(".divTemplate").appendChild(p);            
+           // clone.querySelector(".contenu").textContent = `${value}` + json[i][`${key}`];              
+        }
+        information.appendChild(clone);
+    }
+}
 
 
 
@@ -102,6 +101,7 @@ function creeElementMeteo(json){
     }
     for( let i = 0; i < nb_jour; i++){
       const subMeteo = document.createElement('div');
+      subMeteo.classList.add("divTemplate");
       const dat = new Date(json[i]["datetime"]);
       const dateJour = document.createElement('h3');
       dateJour.textContent =dat.toDateString();
@@ -111,7 +111,7 @@ function creeElementMeteo(json){
         baliseP.textContent = `${value}` + json[i][`${key}`];
         subMeteo.append(baliseP)
       }
-      divMeteo.append(subMeteo)
+      information.append(subMeteo)
     }
   
   }
@@ -139,8 +139,8 @@ async function getDataMeteo(inse) {
             throw new Error(`Response status: ${response.status}`);
         }
         var json = await response.json();
-        //let reponse = json["forecast"]; // meteo sur 1 jour
-        let reponse = json["forecast"][0]; // meteo sur 1 jour
+        let reponse = json["forecast"]; // meteo sur 1 jour
+        //let reponse = json["forecast"][0]; // meteo sur 1 jour
         return reponse;
     } catch (error) {
         return -1;
