@@ -23,11 +23,11 @@
             <br>
             <label for="commune" id="labelSelect" class="cache">Commune : </label>
             <select name="commune" id="communeSelect" class="cache"></select>
-            <fieldset>
-                <legend>Option supplémentaire :</legend>
+            <fieldset id="option" class="cache">
+                <legend >Option supplémentaire :</legend>
                 <div>
                     <label for="jours" id="labelJours">Nombre de jours :</label>
-                    <input type="range" id="nbJours" name="jours" min="1" max="7" step="1">
+                    <input type="range" id="nbJours" name="jours" min="1" max="7" step="1" value="1">
                 </div>
                 <div>
                     <label for="latitude" id="labelLatitude">Latitude décimale :</label>
@@ -54,7 +54,15 @@
         </form>
         <template id="infoMeteo">
             <div class="divTemplate">
-                <p class="contenu"></p>
+                <div>
+                    <img class="image" src="" alt="">
+                </div>
+                <div class="infoPrincipal">
+                    <p class="contenu"></p>
+                </div>
+                <div class="infoOptionnel">
+                    <p class="contenuOptionnel"></p>
+                </div>
             </div>
         </template>
     </div>
