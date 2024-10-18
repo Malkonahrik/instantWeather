@@ -23,8 +23,8 @@
             <br>
             <label for="commune" id="labelSelect" class="cache">Commune : </label>
             <select name="commune" id="communeSelect" class="cache"></select>
-            <fieldset id="option" class="cache">
-                <legend >Option supplémentaire :</legend>
+            <fieldset id="option" class="">
+                <legend>Option supplémentaire :</legend>
                 <div>
                     <label for="jours" id="labelJours">Nombre de jours :</label>
                     <input type="range" id="nbJours" name="jours" min="1" max="7" step="1" value="1">
@@ -54,7 +54,7 @@
         </form>
         <template id="infoMeteo">
             <div class="divTemplate">
-                <div>
+                <div class="divImage">
                     <img class="image" src="" alt="">
                 </div>
                 <div class="infoPrincipal">

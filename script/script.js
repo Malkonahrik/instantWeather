@@ -9,6 +9,26 @@ const labelSelect = document.getElementById("labelSelect");
 codePostal.value = "";
 var communes = [];
 
+class weatherCard {
+    min;
+    max; 
+    lat; 
+    long; 
+    cummul; 
+    vitesse;
+    direction;
+
+    constructor(min, max, lat, long, cummul, vitesse, direction) {
+      this.min = min;
+      this.max = max;
+      this.lat = lat;
+      this.long = long;
+      this.cummul = cummul;
+      this.vitesse = vitesse;
+      this.direction = direction;
+    }
+}
+
 codePostal.addEventListener("input", (e) => {
     if (e.target.type === "number" && !e.key.match(/^[0-9]+$/)) {
         e.preventDefault();
