@@ -23,11 +23,46 @@
             <br>
             <label for="commune" id="labelSelect" class="cache">Commune : </label>
             <select name="commune" id="communeSelect" class="cache"></select>
+            <fieldset id="option" class="cache">
+                <legend>Option supplémentaire :</legend>
+                <div>
+                    <label for="jours" id="labelJours">Nombre de jours :</label>
+                    <input type="range" id="nbJours" name="jours" min="1" max="7" step="1" value="1">
+                </div>
+                <div>
+                    <label for="latitude" id="labelLatitude">Latitude décimale :</label>
+                    <input name="latitude" id="checkboxLatitude" type="checkbox">
+                </div>
+                <div>
+                    <label for="longitude" id="labelLongitude">Longitude décimale :</label>
+                    <input name="longitude" id="checkboxLongitude" type="checkbox">
+                </div>
+                <div>
+                    <label for="pluie" id="labelPluie">Cumul de pluie sur la journée en mm</label>
+                    <input name="pluie" id="checkboxPluie" type="checkbox">
+                </div>
+                <div>
+                    <label for="vitesseVent" id="labelVitesseVent">Vitesse du vent :</label>
+                    <input name="vitesseVent" id="checkboxVitesseVent" type="checkbox">
+                </div>
+                <div>
+                    <label for="directionVent" id="labelDirectionVent">Direction du vent en degrés :</label>
+                    <input name="directionVent" id="checkboxDirectionVent" type="checkbox">
+                </div>
+            </fieldset>
             <button id="submit" class="cache">Valider</button>
         </form>
         <template id="infoMeteo">
             <div class="divTemplate">
-                <p class="contenu"></p>
+                <div class="divImage">
+                    <img class="image" src="" alt="">
+                </div>
+                <div class="infoPrincipal">
+                    <p class="contenu"></p>
+                </div>
+                <div class="infoOptionnel">
+                    <p class="contenuOptionnel"></p>
+                </div>
             </div>
         </template>
     </div>
