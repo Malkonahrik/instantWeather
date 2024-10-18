@@ -6,6 +6,7 @@ const bouttonSubmit = document.getElementById("submit");
 const divMeteo = document.getElementById("infoMeteo");
 const form = document.getElementById("formulaire");
 const nbJours = document.getElementById("nbJours");
+const compteurNbJour = document.getElementById("compteurNbJours");
 const checkboxLatitude = document.getElementById("checkboxLatitude");
 const checkboxLongitude = document.getElementById("checkboxLongitude");
 const checkboxPluie = document.getElementById("checkboxPluie");
@@ -14,6 +15,7 @@ const checkboxDirectionVent = document.getElementById("checkboxDirectionVent");
 const fieldset = document.getElementById("option");
 const labelSelect = document.getElementById("labelSelect");
 codePostal.value = "";
+compteurNbJour.textContent = nbJours.value;
 var communes = [];
 
 class weatherCard {
@@ -92,6 +94,10 @@ bouttonSubmit.addEventListener("click", (e) => {
         }
     })
     e.preventDefault();
+});
+
+nbJours.addEventListener("input",(e)=>{
+    compteurNbJour.textContent = nbJours.value;
 });
 
 function creeElementMeteoTemplate(json){
