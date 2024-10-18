@@ -95,6 +95,7 @@ bouttonSubmit.addEventListener("click", (e) => {
 });
 
 function creeElementMeteoTemplate(json){
+    console.log(json);
     let nb_jour = nbJours.value;
     let tabDesTextes ={
       "tmin" : "Température Min: ",
@@ -109,8 +110,64 @@ function creeElementMeteoTemplate(json){
         for(const [key,value] of Object.entries(tabDesTextes)){
             var p = clone.querySelector(".contenu").cloneNode();
             p.textContent = `${value}` + json[i][`${key}`];
+            if (`${key}` == "tmin" || `${key}` == "tmax" ){
+                p.textContent += "°C";
+            }
+            if (`${key}` == "probarain"){
+                p.textContent += "%";
+            }
+            if (`${key}` == "sun_hours"){
+                p.textContent += "h";
+            }
             clone.querySelector(".divTemplate").appendChild(p);            
            // clone.querySelector(".contenu").textContent = `${value}` + json[i][`${key}`];              
+        }
+        var img = clone.querySelector(".image");
+        var codeMeteo =  json[i]["weather"];   
+        if(codeMeteo == 0){
+                img.src = "../image/soleil.png";
+        }
+        if(codeMeteo == 1){
+            img.src = "../image/eclaircies1.png";
+        }
+        if(codeMeteo == 2){
+            img.src = "../image/eclaircies2.png";
+        }
+        if(codeMeteo >= 3 && codeMeteo <= 6){
+            img.src = "../image/nuageux.png";
+        }
+        if(codeMeteo == 220 || codeMeteo == 221 || codeMeteo == 20 || codeMeteo == 21 || codeMeteo == 7){
+            img.src = "../image/faible_neige.png";
+        }
+        if(codeMeteo == 10 || codeMeteo == 16 || codeMeteo == 210){
+            img.src = "../image/faible_pluie.png";
+        }
+        if(codeMeteo == 11 || codeMeteo == 211){
+            img.src = "../image/forte_pluie.png";
+        }
+        if(codeMeteo == 12 || codeMeteo == 212){
+            img.src = "../image/forte_pluie_vent.png";
+        }
+        if(codeMeteo == 13 || codeMeteo == 14 || codeMeteo == 30 || codeMeteo == 31){
+            img.src = "../image/faible_grele.png";
+        }
+        if(codeMeteo == 15 || codeMeteo == 32 || codeMeteo >= 230){
+            img.src = "../image/forte_grele.png";
+        }
+        if(codeMeteo == 22 || codeMeteo == 222){
+            img.src = "../image/forte_neige.png";
+        }
+        if((codeMeteo >= 40 && codeMeteo <= 48  )|| (codeMeteo >= 70 && codeMeteo <= 78  )){
+            img.src = "../image/soleil_pluie.png";
+        }
+        if((codeMeteo >= 60 && codeMeteo <= 68  )){
+            img.src = "../image/soleil_neige.png";
+        }
+        if((codeMeteo >= 100 && codeMeteo <= 108  )){
+            img.src = "../image/orage_sans_pluie.png";
+        }
+        if((codeMeteo >= 120 && codeMeteo <= 142  )){
+            img.src = "../image/orage_pluie.png";
         }
         information.appendChild(clone);
     }
