@@ -4,8 +4,14 @@ const erreur = document.getElementById("errorMessage");
 const communeSelect = document.getElementById("communeSelect");
 const bouttonSubmit = document.getElementById("submit");
 const divMeteo = document.getElementById("infoMeteo");
-const form = document.getElementById("formulaire")
-
+const form = document.getElementById("formulaire");
+const nbJours = document.getElementById("nbJours");
+const checkboxLatitude = document.getElementById("checkboxLatitude");
+const checkboxLongitude = document.getElementById("checkboxLongitude");
+const checkboxPluie = document.getElementById("checkboxPluie");
+const checkboxVitesseVent = document.getElementById("checkboxVitesseVent");
+const checkboxDirectionVent = document.getElementById("checkboxDirectionVent");
+const fieldset = document.getElementById("option");
 const labelSelect = document.getElementById("labelSelect");
 codePostal.value = "";
 var communes = [];
@@ -52,6 +58,7 @@ codePostal.addEventListener("input", (e) => {
                     option.textContent = element["nom"];
                     communeSelect.appendChild(option);
                 });
+                fieldset.classList.remove("cache");
                 bouttonSubmit.classList.remove("cache");
                 communeSelect.classList.remove("cache");
                 labelSelect.classList.remove("cache");
@@ -59,6 +66,7 @@ codePostal.addEventListener("input", (e) => {
         });
     } else {
         communeSelect.replaceChildren();
+        fieldset.classList.add("cache");
         labelSelect.classList.add("cache")
         communeSelect.classList.add("cache");
         bouttonSubmit.classList.add("cache");
@@ -87,7 +95,7 @@ bouttonSubmit.addEventListener("click", (e) => {
 });
 
 function creeElementMeteoTemplate(json){
-    let nb_jour = 7;
+    let nb_jour = nbJours.value;
     let tabDesTextes ={
       "tmin" : "Température Min: ",
       "tmax" : "Température Max: ",
@@ -111,7 +119,7 @@ function creeElementMeteoTemplate(json){
 
 
 function creeElementMeteo(json){
-    let nb_jour = 7;
+    let nb_jour = nbJours.value;
     let tabDesTextes ={
       "tmin" : "Température Min: ",
       "tmax" : "Température Max: ",
