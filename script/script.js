@@ -207,7 +207,7 @@ function creeElementMeteoTemplate(json) {
             img.alt = "Icone de forte neige";
         }
         if ((codeMeteo >= 40 && codeMeteo <= 48) || (codeMeteo >= 70 && codeMeteo <= 78)) {
-            img.src = "../image/soleil_pluie.png";
+            img.src = "./image/soleil_pluie.png";
             img.alt = "Icone du soleil et de pluie";
         }
         if ((codeMeteo >= 60 && codeMeteo <= 68)) {
