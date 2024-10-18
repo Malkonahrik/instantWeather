@@ -175,7 +175,7 @@ function creeElementMeteoTemplate(json) {
             img.alt = "Icone d'éclaircie";
         }
         if (codeMeteo >= 3 && codeMeteo <= 6) {
-            img.src = "https://malkonahrik.github.io/instantWeather/image/nuage.png";
+            img.src = "./image/nuage.png";
             img.alt = "Icone de nuage";
         }
         if (codeMeteo == 220 || codeMeteo == 221 || codeMeteo == 20 || codeMeteo == 21 || codeMeteo == 7) {
