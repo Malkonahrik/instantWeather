@@ -5,6 +5,9 @@ const communeSelect = document.getElementById("communeSelect");
 const bouttonSubmit = document.getElementById("submit");
 const divMeteo = document.getElementById("infoMeteo");
 const form = document.getElementById("formulaire")
+
+const labelSelect = document.getElementById("labelSelect");
+codePostal.value = "";
 var communes = [];
 
 codePostal.addEventListener("input", (e) => {
@@ -31,10 +34,12 @@ codePostal.addEventListener("input", (e) => {
                 });
                 bouttonSubmit.classList.remove("cache");
                 communeSelect.classList.remove("cache");
+                labelSelect.classList.remove("cache");
             }
         });
     } else {
         communeSelect.replaceChildren();
+        labelSelect.classList.add("cache")
         communeSelect.classList.add("cache");
         bouttonSubmit.classList.add("cache");
     }
@@ -48,45 +53,68 @@ bouttonSubmit.addEventListener("click", (e) => {
         } else {
             erreur.classList.add("cache");
             form.classList.add("cache");
-            creeElementMeteo(json);
-            /*const balisePTemperatureMin = document.createElement('p').textContent = json["tmin"];
-            const balisePTemperatureMax = document.createElement('p').textContent = json["tmax"];
-            const balisePProbaPluie = document.createElement('p').textContent = json["probarain"];
-            const balisePHeureSoleil = document.createElement('p').textContent = json["sun_hours"];
-            divMeteo.append(balisePTemperatureMin);
-            divMeteo.append(balisePTemperatureMax);
-            divMeteo.append(balisePProbaPluie);
-            divMeteo.append(balisePHeureSoleil);*/
+            //creeElementMeteo(json);
+            if ("content" in document.createElement("template")) {
+                var template = document.getElementById("infoMeteo");
+                
+                var clone = document.importNode(template.content, true);
+                clone.querySelector(".contenu").textContent = "Température minimum : " + json["tmin"];              
+                information.appendChild(clone);
+              
+                var clone2 = document.importNode(template.content, true);
+                clone2.querySelector(".contenu").textContent = "Température maximum : " + json["tmax"];              
+                information.appendChild(clone2);
+
+                var clone3 = document.importNode(template.content, true);
+                clone3.querySelector(".contenu").textContent = "Probabilité de pluie : " + json["probarain"];              
+                information.appendChild(clone3);
+
+                var clone4 = document.importNode(template.content, true);
+                clone4.querySelector(".contenu").textContent = "Temps d'ensoleillement : " + json["sun_hours"];              
+                information.appendChild(clone4);
+            } else {
+                var div1 = document.createElement("div");
+                div1.classList.add("divTemplate");
+                var div2 = div1.cloneNode();
+                var div3 = div1.cloneNode();
+                var div4 = div1.cloneNode();
+                div1.appendChild(document.createElement("p").textContent = "Température minimum : " + json["tmin"]);
+                div2.appendChild(document.createElement("p").textContent = "Température maximum : " + json["tmax"]);
+                div3.appendChild(document.createElement("p").textContent = "Probabilité de pluie : " + json["probarain"]);
+                div4.appendChild(document.createElement("p").textContent = "Temps d'ensoleillement : " + json["sun_hours"]);
+            }
 
         }
     })
     e.preventDefault();
 });
 
+
+
 function creeElementMeteo(json){
-  let nb_jour = 7;
-  let tabDesTextes ={
-    "tmin" : "Température Min: ",
-    "tmax" : "Température Max: ",
-    "probarain" : "Proba pluie: ",
-    "sun_hours" : "Heure ensoleillement: ",
-
-  }
-  for( let i = 0; i < nb_jour; i++){
-    const subMeteo = document.createElement('div');
-    const dat = new Date(json[i]["datetime"]);
-    const dateJour = document.createElement('h3');
-    dateJour.textContent =dat.toDateString();
-    subMeteo.append(dateJour);
-    for(const [key,value] of Object.entries(tabDesTextes)){
-      const baliseP = document.createElement('p');
-      baliseP.textContent = `${value}` + json[i][`${key}`];
-      subMeteo.append(baliseP)
+    let nb_jour = 7;
+    let tabDesTextes ={
+      "tmin" : "Température Min: ",
+      "tmax" : "Température Max: ",
+      "probarain" : "Proba pluie: ",
+      "sun_hours" : "Heure ensoleillement: ",
+  
     }
-    divMeteo.append(subMeteo)
+    for( let i = 0; i < nb_jour; i++){
+      const subMeteo = document.createElement('div');
+      const dat = new Date(json[i]["datetime"]);
+      const dateJour = document.createElement('h3');
+      dateJour.textContent =dat.toDateString();
+      subMeteo.append(dateJour);
+      for(const [key,value] of Object.entries(tabDesTextes)){
+        const baliseP = document.createElement('p');
+        baliseP.textContent = `${value}` + json[i][`${key}`];
+        subMeteo.append(baliseP)
+      }
+      divMeteo.append(subMeteo)
+    }
+  
   }
-
-}
 
 async function getData() {
     const url = "https://geo.api.gouv.fr/communes?codePostal=" + codePostal.value;
@@ -111,9 +139,12 @@ async function getDataMeteo(inse) {
             throw new Error(`Response status: ${response.status}`);
         }
         var json = await response.json();
-        let reponse = json["forecast"]; // meteo sur 1 jour
+        //let reponse = json["forecast"]; // meteo sur 1 jour
+        let reponse = json["forecast"][0]; // meteo sur 1 jour
         return reponse;
     } catch (error) {
         return -1;
     }
+
 }
+

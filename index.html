@@ -15,18 +15,25 @@
     <div id="divPrincipale" class="encadreTitre">
         <h1> INSTANT WEATHER </h1>
     </div>
-    <div id="Information" class="encadreInfos">
-        <form id="formulaire">
+    <div id="information" class="encadreInfos">
+        <form id="formulaire" method="post">
             <label for="cp">Code Postal : </label>
             <input type="text" name="codePostal" id="cp" placeholder="00000" minlength="5" maxlength="5">
             <span id="errorMessage" class="cache">Le code postal est invalide.</span>
             <br>
+            <label for="commune" id="labelSelect" class="cache">Commune : </label>
             <select name="commune" id="communeSelect" class="cache"></select>
             <button id="submit" class="cache">Valider</button>
         </form>
-        <div id="infoMeteo">
+    <!---<div id="infoMeteo">
 
-        </div>
+    </div>-->
+        <template id="infoMeteo">
+            <div class="divTemplate">
+                <p class="contenu"></p>
+            </div>
+        </template>
+>>>>>>> V2
     </div>
 </body>
 
