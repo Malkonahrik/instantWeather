@@ -6,15 +6,18 @@ const bouttonSubmit = document.getElementById("submit");
 const divMeteo = document.getElementById("infoMeteo");
 const form = document.getElementById("formulaire");
 const nbJours = document.getElementById("nbJours");
-const checkboxLatitude = document.getElementById("checkboxLatitude");
-const checkboxLongitude = document.getElementById("checkboxLongitude");
-const checkboxPluie = document.getElementById("checkboxPluie");
-const checkboxVitesseVent = document.getElementById("checkboxVitesseVent");
-const checkboxDirectionVent = document.getElementById("checkboxDirectionVent");
 const fieldset = document.getElementById("option");
 const labelSelect = document.getElementById("labelSelect");
 codePostal.value = "";
 var communes = [];
+
+let tabDesTextes ={
+    "tmin" : "Température Min: ",
+    "tmax" : "Température Max: ",
+    "probarain" : "Proba pluie: ",
+    "sun_hours" : "Heure ensoleillement: ",
+
+  }
 
 class weatherCard {
     min;
@@ -83,6 +86,7 @@ bouttonSubmit.addEventListener("click", (e) => {
             form.classList.add("cache");
             /*creeElementMeteo(json);
             creeElementMeteoTemplate(json)*/
+            lectureCheckbox();
            if ("content" in document.createElement("template")) {
                 creeElementMeteoTemplate(json)
             } else {
@@ -96,37 +100,42 @@ bouttonSubmit.addEventListener("click", (e) => {
 
 function creeElementMeteoTemplate(json){
     let nb_jour = nbJours.value;
-    let tabDesTextes ={
-      "tmin" : "Température Min: ",
-      "tmax" : "Température Max: ",
-      "probarain" : "Proba pluie: ",
-      "sun_hours" : "Heure ensoleillement: ",
-  
-    }
     var template = document.getElementById("infoMeteo");
     for( let i = 0; i < nb_jour; i++){ 
         var clone = document.importNode(template.content, true);
         for(const [key,value] of Object.entries(tabDesTextes)){
             var p = clone.querySelector(".contenu").cloneNode();
             p.textContent = `${value}` + json[i][`${key}`];
-            clone.querySelector(".divTemplate").appendChild(p);            
-           // clone.querySelector(".contenu").textContent = `${value}` + json[i][`${key}`];              
+            clone.querySelector(".divTemplate").appendChild(p);                        
         }
         information.appendChild(clone);
     }
 }
 
+function lectureCheckbox(){
+    var tabCheckbox = document.getElementsByClassName("checkbox_info")
+    for(let i = 0; i < tabCheckbox.length; i++){
+        let valeur = tabCheckbox[i].value;
+        let nom = tabCheckbox[i].getAttribute("name");
+        tabCheckbox[i].checked?(tabDesTextes[nom]= valeur):(console.log("non"));
+    }
+}
 
+
+
+function init_tabDesTextes(){
+    tabDesTextes ={
+        "tmin" : "Température Min: ",
+        "tmax" : "Température Max: ",
+        "probarain" : "Proba pluie: ",
+        "sun_hours" : "Heure ensoleillement: ",
+    
+      }
+}
 
 function creeElementMeteo(json){
     let nb_jour = nbJours.value;
-    let tabDesTextes ={
-      "tmin" : "Température Min: ",
-      "tmax" : "Température Max: ",
-      "probarain" : "Proba pluie: ",
-      "sun_hours" : "Heure ensoleillement: ",
-  
-    }
+    console.log(tabDesTextes)
     for( let i = 0; i < nb_jour; i++){
       const subMeteo = document.createElement('div');
       subMeteo.classList.add("divTemplate");
