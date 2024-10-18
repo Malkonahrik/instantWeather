@@ -163,15 +163,15 @@ function creeElementMeteoTemplate(json) {
         var img = clone.querySelector(".image");
         var codeMeteo = json[i]["weather"];
         if (codeMeteo == 0) {
-            img.src = "../image/soleil.png";
+            img.src = "./image/soleil.png";
             img.alt = "Icone du soleil";
         }
         if (codeMeteo == 1) {
-            img.src = "../image/eclaircies1.png";
+            img.src = "./image/eclaircies1.png";
             img.alt = "Icone d'éclaircie";
         }
         if (codeMeteo == 2) {
-            img.src = "../image/eclaircies2.png";
+            img.src = "./image/eclaircies2.png";
             img.alt = "Icone d'éclaircie";
         }
         if (codeMeteo >= 3 && codeMeteo <= 6) {
@@ -179,31 +179,31 @@ function creeElementMeteoTemplate(json) {
             img.alt = "Icone de nuage";
         }
         if (codeMeteo == 220 || codeMeteo == 221 || codeMeteo == 20 || codeMeteo == 21 || codeMeteo == 7) {
-            img.src = "../image/faible_neige.png";
+            img.src = "./image/faible_neige.png";
             img.alt = "Icone de faible neige";
         }
         if (codeMeteo == 10 || codeMeteo == 16 || codeMeteo == 210) {
-            img.src = "../image/faible_pluie.png";
+            img.src = "./image/faible_pluie.png";
             img.alt = "Icone de faible pluie";
         }
         if (codeMeteo == 11 || codeMeteo == 211) {
-            img.src = "../image/forte_pluie.png";
+            img.src = "./image/forte_pluie.png";
             img.alt = "Icone de forte pluie";
         }
         if (codeMeteo == 12 || codeMeteo == 212) {
-            img.src = "../image/forte_pluie_vent.png";
+            img.src = "./image/forte_pluie_vent.png";
             img.alt = "Icone de forte pluie et de vent";
         }
         if (codeMeteo == 13 || codeMeteo == 14 || codeMeteo == 30 || codeMeteo == 31) {
-            img.src = "../image/faible_grele.png";
+            img.src = "./image/faible_grele.png";
             img.alt = "Icone de faible grèle";
         }
         if (codeMeteo == 15 || codeMeteo == 32 || codeMeteo >= 230) {
-            img.src = "../image/forte_grele.png";
+            img.src = "./image/forte_grele.png";
             img.alt = "Icone de forte grèle";
         }
         if (codeMeteo == 22 || codeMeteo == 222) {
-            img.src = "../image/forte_neige.png";
+            img.src = "./image/forte_neige.png";
             img.alt = "Icone de forte neige";
         }
         if ((codeMeteo >= 40 && codeMeteo <= 48) || (codeMeteo >= 70 && codeMeteo <= 78)) {
@@ -211,15 +211,15 @@ function creeElementMeteoTemplate(json) {
             img.alt = "Icone du soleil et de pluie";
         }
         if ((codeMeteo >= 60 && codeMeteo <= 68)) {
-            img.src = "../image/soleil_neige.png";
+            img.src = "./image/soleil_neige.png";
             img.alt = "Icone du soleil et de neige";
         }
         if ((codeMeteo >= 100 && codeMeteo <= 108)) {
-            img.src = "../image/orage_sans_pluie.png";
+            img.src = "./image/orage_sans_pluie.png";
             img.alt = "Icone d'orage";
         }
         if ((codeMeteo >= 120 && codeMeteo <= 142)) {
-            img.src = "../image/orage_pluie.png";
+            img.src = "./image/orage_pluie.png";
             img.alt = "Icone d'orage et de pluie";
         }
         information.appendChild(clone);
